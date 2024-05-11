@@ -18,7 +18,7 @@ AMD:EPYC
 
 DVD ISO
 
-![](05-10-24-InstallOS_md_files/0416bf60-0f98-11ef-9ebc-2f793003aa1f_20240511211144.jpeg?v=1\&type=image\&token=V1%3APb69jqcTK3ZXV4mHZ_IptL_JTnBJMqtnqbhqR0MtB00)
+![输入图片说明](img/0416bf60-0f98-11ef-9ebc-2f793003aa1f_20240511211144.jpeg)
 
 balenaEtcher 写入U盘
 
@@ -30,17 +30,14 @@ bois 选择U盘启动（显示器分辨率不要超过2K，会乱码）
 
 时区：Asia/shanghai
 
-安装位置：固态硬盘，自定义分区![](InstallOS_md_files/7537cc10-0ec2-11ef-b9be-ff875965e404_20240510194302.jpeg?v=1\&type=image\&token=V1%3ANf7D9nw_uUC2LWjXBpMnHhT7gkYnB7anKy-THCanBtE)
-
-![](05-10-24-InstallOS_md_files/1ab26800-0f98-11ef-9ebc-2f793003aa1f_20240511211222.jpeg?v=1\&type=image\&token=V1%3AVn5fHBljU04iS49qmybCACTAbfOJhW6wdDM4KrVrA_w)
-
-![](05-10-24-InstallOS_md_files/0f7e8450-0f98-11ef-9ebc-2f793003aa1f_20240511211203.jpeg?v=1\&type=image\&token=V1%3AoYAkAtC9aRoF0N5022NtFMrRcrQVHXJfYgki2S8V048)
+安装位置：固态硬盘，自定义分区!
 
 Click here to create them automatically
 
 following partitioning scheme: Standard Partition
 
-![](InstallOS_md_files/935aa410-0ec2-11ef-b9be-ff875965e404_20240510194353.jpeg?v=1\&type=image\&token=V1%3AFBYP3xk8exXqPA01bFxfKZSBG9BeFrgWy_g0mMoE-vo)
+![输入图片说明](img/1ab26800-0f98-11ef-9ebc-2f793003aa1f_20240511211222.jpeg)
+![输入图片说明](img/0f7e8450-0f98-11ef-9ebc-2f793003aa1f_20240511211203.jpeg)
 
 分区调正：/home 删除，/ 删除，/ 添加分配主要容量，Accept Changes
 
