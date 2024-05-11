@@ -65,18 +65,18 @@ following partitioning scheme: Standard Partition
 <!---->
 
     sudo nmcli connection modify <interface_name> ipv4.address <ip/prefix>
-    sudo nmcli connection modify enp0s3 ipv4.address 192.168.1.101/24     #固定网卡enp0s3到指定ip
+    sudo nmcli connection modify enp0s3 ipv4.address 192.168.1.101/24     # 固定网卡enp0s3到指定ip
 
 <!---->
 
-    sudo nmcli connection down enp0s3   #关闭以太网
-    sudo nmcli connection up enp0s3    #启动以太网
+    sudo nmcli connection down enp0s3   # 关闭以太网
+    sudo nmcli connection up enp0s3    # 启动以太网
 
 设置本地DNS
 
 编辑文本
 
-    sudo vim /etc/hosts   #编辑 hosts 文件
+    sudo vim /etc/hosts   # 编辑 hosts 文件
 
 添加两行
 
