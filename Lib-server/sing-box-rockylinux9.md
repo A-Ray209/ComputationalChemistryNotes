@@ -12,7 +12,7 @@ https://github.com/SagerNet/sing-box/releases
 
 进行安装（需要管理员权限
 
-`1sudo rpm -ivh sing-box_1.9.0-alpha.8_linux_amd64.rpm `
+`sudo rpm -ivh sing-box_1.9.0-alpha.8_linux_amd64.rpm `
 
 
 
