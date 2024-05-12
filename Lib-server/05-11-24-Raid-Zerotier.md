@@ -75,7 +75,6 @@ sudo mdadm --create --verbose /dev/md0 --level=10 --raid-devices=4 /dev/sdb1 /de
 
 `error/timeout in locking authority file /home/jzq/.Xauthority
 `
-
 因为没有给userA对于/home/jzq/的写权限，所以导致在连接时无法创建文件.Xauthority。因此，输入下面命令后重启：
 
 ```
