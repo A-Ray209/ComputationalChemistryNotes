@@ -71,4 +71,15 @@ sudo mdadm --create --verbose /dev/md0 --level=10 --raid-devices=4 /dev/sdb1 /de
 
 ![输入图片说明](img/90453690-0f9a-11ef-ac42-e112b780f144_20240511212958.jpeg)
 
+### 挂载 /home 目录后登录 shh 出现 
+
+`error/timeout in locking authority file /home/jzq/.Xauthority
+`
+    因为没有给userA对于/home/jzq/的写权限，所以导致在连接时无法创建文件.Xauthority。因此，输入下面命令后重启：
+
+```
+chown jzq:jzq -R /home/jzq
+usermod -s /bin/bash jzq
+```
+
 &#x20;
