@@ -111,6 +111,11 @@ sudo vim /etc/selinux/config    # 编辑配置文件
 ```
 找到 SELINUX= 这一行，并将其更改为：SELINUX=disabled
 
+在 Windows 端，网络访问 node01，输入用户名 密码
+![输入图片说明](img/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240513174701.png)
+
+结束 
+
 
 ### 3. 无密码互访 ssh
 
