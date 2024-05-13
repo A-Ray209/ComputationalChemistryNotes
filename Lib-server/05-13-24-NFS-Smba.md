@@ -57,15 +57,15 @@ vim /etc/fstab     #编辑文件
 
 结束
 
-### 1. Smba 文件共享
+### 2. Smba 文件共享
 
-### 1.1 安装
+### 2.1 安装
 
 ```
 yum install -y  samba
 ```
 
-### 1.2 配置 smba 
+### 2.2 配置 smba 
 
 ```
 vim /etc/samba/smb.conf     # 编辑配置文件
@@ -103,7 +103,7 @@ sudo systemctl enable nmb
 
 
 ```
-#### 1.3 关闭 selinux 
+#### 2.3 关闭 selinux 
 
 
 ```
@@ -112,7 +112,7 @@ sudo vim /etc/selinux/config    # 编辑配置文件
 找到 SELINUX= 这一行，并将其更改为：SELINUX=disabled
 
 
-### 无密码互访 ssh
+### 3. 无密码互访 ssh
 
 关闭服务端和客户端 selinux
 
