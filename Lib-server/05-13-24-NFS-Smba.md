@@ -53,17 +53,79 @@ mount -t nfs 192.168.1.101:/home /home     # 将 node01 的 home 挂载到 node0
 ```
 vim /etc/fstab     #编辑文件
 ```
+![输入图片说明](img/87bc3d30-10cf-11ef-aa20-8950c8475efc_20240513102139.jpeg)
 
-
-
-
-
-
-
-
-
-
-
-
+结束
 
 ### 1. Smba 文件共享
+
+### 1.1 安装
+
+```
+yum install -y  samba
+```
+
+### 1.2 配置 smba 
+
+```
+vim /etc/samba/smb.conf     # 编辑配置文件
+```
+文件内容改为如下
+[jzq]
+    workgroup = WORKGROUP
+    security = user
+    passdb backend = tdbsam
+    valid users = jzq
+    browseable = yes
+    read only = No
+    path = /home/jzq
+    public = yes
+    writable = yes
+    guest ok = no
+    admin users = jzq
+    valid users = jzq
+    create mask = 0775
+    directory mask = 0775
+
+设置 smba 用户
+
+```
+smbpasswd -a jzq          # 添加smba 用户
+New SMB password:         # 设置密码
+Retype new SMB password:  # 重复密码
+Added user smbuser、
+
+systemctl restart smb     # 重启服务应用配置
+systemctl restart nmb     
+
+sudo systemctl enable smb  # 开机启动
+sudo systemctl enable nmb
+
+
+```
+#### 1.3 关闭 selinux 
+
+
+```
+sudo vim /etc/selinux/config    # 编辑配置文件
+```
+找到 SELINUX= 这一行，并将其更改为：SELINUX=disabled
+
+
+### 无密码互访 ssh
+
+关闭服务端和客户端 selinux
+
+
+```
+su jzq      # 登录用户目录
+setsebool -P use\_nfs\_home\_dirs 1    # 在共享 home 目录的情况下
+ssh-keygen   # 生成 key
+ssh-copy-id node02  # 发送 key 到客户端
+```
+
+
+
+ 
+
+
