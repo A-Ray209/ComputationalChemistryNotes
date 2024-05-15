@@ -401,7 +401,7 @@ sacctmgr list qos format=Name,MaxTRESPerUser
 
 
 ## 参考 https://icode.pku.edu.cn/SCOW/docs/hpccluster/config/slurm.conf
-
+```
 #
 # slurm.conf file. Please run configurator.html
 # (in doc/html) to build a configuration file customized
@@ -493,3 +493,4 @@ NodeName=compute0[1-2] NodeAddr=192.168.29.10[2-3]  CPUs=2 CoresPerSocket=1 Thre
 #                  PARTITIONS                  #
 ################################################
 PartitionName=compute Nodes=compute0[1-2] Default=YES MaxTime=INFINITE State=UP
+```
