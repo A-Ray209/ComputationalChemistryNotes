@@ -37,11 +37,20 @@ g16s *.gjf
 
 ### 2. 定义新命令
 
-
 ```
 vim ~/.basharc
 alias sq='squeue -o "%8i %20j %4C %3t %30R %M %Z"'   # 定义 sq 为新命令，代替 squeue 且更高级
 alias si='sinfo -N -o "%10N %15C %10O %10e %T"'      # 定义 si 为新命令，代替 sinfo 且更高级
 source ~/.bashrc
 ```
+### 3. 用 Chemdraw 转高斯文件
+
+1. chemdraw 绘制分子
+2. 拷贝到 Chem3D ，然后计算构型
+3. 导出为 .mol2 文件
+4. 用高斯将 .mol2 转化为 .gjf 文件
+
+Chem3D 计算构型方式
+![输入图片说明](../123.png)
+
 
