@@ -28,9 +28,9 @@ g16s *.gjf                       # 批量提交任务
 
 ```
 cd /home/jzq/yhy/051524                  # 到计算目录文件夹下
-qcinp.py -a td -r opt -A _tdvert *.log   # 将 .log 文件转化为 .gjf 文件，并添加计算激发态关键词 td （ -a td ），文件名添加后缀 _tdopt（-A _tdopt）
-mkdir td_vert                            # 新建下级目录 tdopt
- mv *_tdvert.gjf td_vert/                # 将新的 *_tdopt.gjf 文件移动到新文件夹下
+qcinp.py -a td -r opt -A _tdvert *.log   # 将 .log 文件转化为 .gjf 文件，并添加计算激发态关键词 td （ -a td ）删除优化关键词 opt （-r opt），文件名添加后缀 _tdvert（-A _tdvert）
+mkdir td_vert                            # 新建下级目录 tdvert
+ mv *_tdvert.gjf td_vert/                # 将新的 *_tdvert.gjf 文件移动到新文件夹下
 cd td_vert/                              # 到新文件夹下         
 qcinp.py -P soc *.gjf                    # 添加计算 SOC 的模板关键词
 vim TSSQ_tdvert.gjf                      # 查看 .gjf 表头
