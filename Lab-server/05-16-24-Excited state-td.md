@@ -10,12 +10,13 @@
 须在基态构型优化结果下进行计算
 
 ```
-qcinp.py -a td -A _tdopt *.log
-mkdir tdopt
-mv *_tdopt.gjf tdopt/
-cd tdopt/
-head *_tdopt.gjf
-g16s *.gjf 
+cd /home/jzq/yhy/051524          # 到计算目录文件夹下
+qcinp.py -a td -A _tdopt *.log   # 将 .log 文件转化为 .gjf 文件，并添加计算激发态关键词 td （ -a td ），文件名添加后缀 _tdopt（-A _tdopt）
+mkdir tdopt                      # 新建下级目录 tdopt
+mv *_tdopt.gjf tdopt/            # 将新的 *_tdopt.gjf 文件移动到新文件夹下
+cd tdopt/                        # 到新文件夹下
+head *_tdopt.gjf                 # 查看 .gjf 表头
+g16s *.gjf                       # 批量提交任务
 ```
 #### 1.3 垂直激发态计算
 
@@ -26,13 +27,14 @@ g16s *.gjf
 一并计算 SOC ，没有优化命令，计算较快
 
 ```
-qcinp.py -a td -r opt -A _tdvert *.log
-mkdir td_vert
- mv *_tdvert.gjf td_vert/
-cd td_vert/
-qcinp.py -P soc *.gjf
-vim TSSQ_tdvert.gjf
-g16s *.gjf
+cd /home/jzq/yhy/051524                  # 到计算目录文件夹下
+qcinp.py -a td -r opt -A _tdvert *.log   # 将 .log 文件转化为 .gjf 文件，并添加计算激发态关键词 td （ -a td ），文件名添加后缀 _tdopt（-A _tdopt）
+mkdir td_vert                            # 新建下级目录 tdopt
+ mv *_tdvert.gjf td_vert/                # 将新的 *_tdopt.gjf 文件移动到新文件夹下
+cd td_vert/                              # 到新文件夹下         
+qcinp.py -P soc *.gjf                    # 添加计算 SOC 的模板关键词
+vim TSSQ_tdvert.gjf                      # 查看 .gjf 表头
+g16s *.gjf                               # 批量提交任务
 ```
 
 ### 2. 定义新命令
