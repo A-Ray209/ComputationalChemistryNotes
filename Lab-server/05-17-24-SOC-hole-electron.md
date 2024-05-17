@@ -54,6 +54,8 @@ File - Preference - Couor - Surface Color
 
 ### 3.  计算分子 SOC
 
+参考网站 http://sobereva.com/411
+
 #### 3.1 从仓库安装 SOC
 
 ```
