@@ -4,7 +4,14 @@ Linux 计算的 .chk 文件为二进制文件，放在 Windows 电脑要经过�
 ```
 for i in *.chk; do formchk $i; done    # 将 .chk 转为 .fchk
 ```
-下载钟老师仓库脚本
+
+方式一：
+用 GaussView 打开 .cube 文件，右键 tools - MOs
+查看轨道能级能量，单位 hartree
+转化为 eV ，乘以 27.2114
+
+
+方式二：下载钟老师仓库脚本
 
 ```
 git clone https://gitee.com/coordmagic/vmwfn.git     # 克隆仓库
@@ -32,7 +39,10 @@ cubegen 0 mo=homo,lumo QAO-TF.fchk QAO-TF.cube 0 h      # 利用 cubgen 命令�
 for i in *.fchk; do cubegen 0 mo=homo,lumo $i ${i/.fchk/}.cube 0 h; done       # 利用循环命令批量导出 .cube 文件
 ```
 
-
+用 GaussView 打开 .cube 文件，
+右键 - Results - Surface - New
+![输入图片说明](img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_2024051.png)
+![输入图片说明](img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20.png)
 
 
 
