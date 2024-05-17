@@ -80,6 +80,20 @@ grep 'sum_soc, <S1|Hso|T1,1,0,-1>' *.txt                                # 抓取
 
 ![输入图片说明](img/SOC_1.png)
 
+#### 3.3 上传 Gitee 仓库
+
+将钟老师编译好的 pysoc 包上传到仓库
+
+```
+cd ~/software                          
+git clone https://gitee.com/alpharay18953964293/pysoc.git      # 克隆仓库
+git add -A                                                     # 添加
+git status                                                     # 查看状态
+git commit -m pysoc                                            # 提交 pysoc 
+git config --global user.name '葛世杰'                          # 仓库信息
+git config --global user.email '2091816477@qq.com'             # 仓库信息 
+git push                                                       # 推送仓库
+```
 
 
 ### 4. 空穴电子分布
