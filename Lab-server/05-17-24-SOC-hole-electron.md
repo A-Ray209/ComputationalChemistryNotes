@@ -40,14 +40,15 @@ for i in *.fchk; do cubegen 0 mo=homo,lumo $i ${i/.fchk/}.cube 0 h; done       #
 ```
 
 用 GaussView 打开 .cube 文件，
-右键 - Results - Surface - New
+右键 - Results - Surface - New Surface
 ![输入图片说明](img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_2024051.png)
 ![输入图片说明](img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20.png)
 
+绘制 HOMO - LUMO 轨道图
 
+修改颜色
 
-
-
+![输入图片说明](img/HOMOLUMO.png)
 
 ### 3.  SOC
 
