@@ -195,9 +195,9 @@ TQAOF_tdvert.log  # Gaussian输出文件，里面含有空穴-电子分析需要
 使用脚本生成 .cube 文件
 ```
 conda develop ~/software/coordmagic
-MCubeGen.py -h
-MCubeGen.py -e s1,t1:hole,ele *.chk
+cd 计算文件夹下
 for i in *.chk; do formchk $i; done
+MCubeGen.py -h
 MCubeGen.py -e s1,t1:hole,ele *.fchk
 cd MCUBEG/
 cd VCUBE/
