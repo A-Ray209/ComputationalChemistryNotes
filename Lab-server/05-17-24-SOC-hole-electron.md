@@ -97,3 +97,67 @@ git push                                                       # 推送仓库
 
 
 ### 4. 空穴电子分布
+
+#### 4.1 安装 Multiwfn
+
+安装参考网站 http://sobereva.com/688
+
+##### 4.1.1 安装 motif 库
+
+
+```
+sudo yum install motif
+```
+##### 4.1.2 检查SysV共享内存段
+
+当 Multiwfn 做一些较耗内存的分析、载入较大波函数文件时会崩溃。需要增大SysV共享内存段
+```
+sudo vim /etc/sysctl.conf
+
+kernel.shmmax = 2000000000     # 添加内容
+```
+##### 4.1.3 下载 Multiwfn
+
+下载网站 http://sobereva.com/multiwfn/
+
+选择 Linux 64bit: Multiwfn_3.8_dev_bin_Linux.zip （版本号会发生变化）
+
+上传安装包到  /home/jzq/software/
+
+解压后的目录是 /home/jzq/software/Multiwfn_[版本号]_bin_Linux/，在里面应当可以看到Multiwfn程序的各种文件
+
+##### 4.1.4 配置~/.bashrc文件
+
+
+```
+vim ~/.bashrc
+```
+添加环境变量
+```
+ulimit -s unlimited
+export OMP_STACKSIZE=200M
+export Multiwfnpath=/home/jzq/software/Multiwfn_[版本号]_bin_Linux
+export PATH=/home/jzq/software/Multiwfn_[版本号]_bin_Linux:$PATH
+```
+
+##### 4.1.5 增加可执行权限
+
+
+```
+chmod +x /home/jzq/software/Multiwfn_[版本号]_bin_Linux/Multiwfn
+```
+##### 4.1.6 配置settings.ini
+
+编辑 Multiwfn 目录下的 settings.ini，搜索 nthreads，将之数值改为计算时要用的并行核数，通常设为CPU的物理核心数即可
+formchkpath：定义的是Gaussian目录下的formchk程序的路径
+gaupath ：设成了Gaussian的可执行文件的路径
+```
+nthreads = 40
+formchkpath= "/home/jzq/g16/formchk"
+gaupath= "/home/jzq/g16/g16"
+```
+##### 4.1.7 测试
+
+退出终端（关闭终端窗口，或者断开链接），然后重新进入终端，之后直接输入Multiwfn
+
+结束
