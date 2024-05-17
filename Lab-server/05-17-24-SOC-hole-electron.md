@@ -59,6 +59,10 @@ File - Preference - Couor - Surface Color
 ```
 cd ~/software                                                 # 到软件目录下
 git clone https://gitee.com/alpharay18953964293/pysoc.git     # 下载执行文件
+cd /home/jzq/software/sob_PySOC_MolSOC/pysoc                  # 到下载目录下
+chmod +x * -R                                                 # 变为可执行文件
+cd /home/jzq/software/sob_PySOC_MolSOC/molsoc_modified
+chmod +x * -R                                                 # 变为可执行文件
 cd /home/jzq/software/sob_PySOC_MolSOC/pysoc/bin              # 到执行文件目录下
 ls                                                            # 查看可执行文件
 export PATH=/home/jzq/software/sob_PySOC_MolSOC/pysoc/bin:$PATH    # 临时添加环境变量
