@@ -160,6 +160,46 @@ gaupath= "/home/jzq/g16/g16"
 
 退出终端（关闭终端窗口，或者断开链接），然后重新进入终端，之后直接输入Multiwfn
 
+若从smba服务中解压Multiwfn，则所有者为root用户，需要改所有者才能运行
+
+```
+cd /home/jzq/software/
+sudo chown -R jzq Multiwfn_3.8_dev_bin_Linux/
+```
+
 如果你是通过纯文本界面连接远程 Linux 服务器并在上面执行 Multiwfn 的普通版，并且发现启动 Multiwfn 时会短暂卡住，在~/.bashrc文件末尾加入 export DISPLAY=":0" 可以避免
 
 结束
+
+#### 4.2 用 Multiwfn 生成电子-空穴分布
+
+参考网站 http://sobereva.com/434
+
+```
+cd ~/yhy/20240515/td_vert/
+Multiwfn TQAOF_tdvert.chk    # 首先载入含有参考态波函数信息的文件
+
+18                # 电子激发分析
+1                 # 空穴-电子分析
+TQAOF_tdvert.log  # Gaussian输出文件，里面含有空穴-电子分析需要的组态系数信息
+1                 # 首先我们分析基态(S0)到第1激发态(S1)的电子激发特征
+1                 # 考察空穴、电子等函数的图形及各种指数
+2                 # 当前体系不大，用中等质量格点就够了
+# 根据屏幕代码提示选择
+
+
+```
+
+使用脚本生成 .cube 文件
+```
+conda develop ~/software/coordmagic
+MCubeGen.py -h
+MCubeGen.py -e s1,t1:hole,ele *.chk
+for i in *.chk; do formchk $i; done
+MCubeGen.py -e s1,t1:hole,ele *.fchk
+cd MCUBEG/
+```
+
+
+
+
