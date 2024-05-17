@@ -160,4 +160,6 @@ gaupath= "/home/jzq/g16/g16"
 
 退出终端（关闭终端窗口，或者断开链接），然后重新进入终端，之后直接输入Multiwfn
 
+如果你是通过纯文本界面连接远程 Linux 服务器并在上面执行 Multiwfn 的普通版，并且发现启动 Multiwfn 时会短暂卡住，在~/.bashrc文件末尾加入 export DISPLAY=":0" 可以避免
+
 结束
