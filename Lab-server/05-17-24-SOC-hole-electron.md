@@ -48,12 +48,37 @@ for i in *.fchk; do cubegen 0 mo=homo,lumo $i ${i/.fchk/}.cube 0 h; done       #
 
 修改颜色
 
+File - Preference - Couor - Surface Color
+
 ![输入图片说明](img/HOMOLUMO.png)
 
 ### 3.  SOC
 
+#### 3.1 从仓库安装 SOC
 
+```
+cd ~/software                                                 # 到软件目录下
+git clone https://gitee.com/alpharay18953964293/pysoc.git     # 下载执行文件
+cd /home/jzq/software/sob_PySOC_MolSOC/pysoc/bin              # 到执行文件目录下
+ls                                                            # 查看可执行文件
+export PATH=/home/jzq/software/sob_PySOC_MolSOC/pysoc/bin:$PATH    # 临时添加环境变量
+which pysoc.py                                                     # 查看添加结果
+update_pysoc.sh                                                    # 配置 SOC 文件
+vim ~/.bashrc                                                      # 永久添加环境变量
+export PATH=/home/jzq/software/sob_PySOC_MolSOC/pysoc/bin:$PATH    # 添加内容
+```
+#### 3.2 计算 SOC
 
+```
+cd /home/jzq/yhy/20240515/td_vert/                                 # 到计算目录下
+calcsoc -s 3 -t 3 TQAOF_tdvert.log                                 # 查看计算结果                    
+calcsoc -s 1 -t 1 TQAOF_tdvert.log > TQAOF_tdvert——soc.txt              # 将理算结果导入到 .txt 文件中
+for i in *.log; do calcsoc -s 1 -t 1 $i > ${i/.log/}_soc.txt; done      # 批量执行
+grep 'sum_soc, <S1|Hso|T1,1,0,-1>' *.txt                                # 抓取计算结果
+```
+取冒号后的第一位数字
+
+![输入图片说明](img/SOC_1.png)
 
 
 
