@@ -52,7 +52,7 @@ File - Preference - Couor - Surface Color
 
 ![输入图片说明](img/HOMOLUMO.png)
 
-### 3.  SOC
+### 3.  计算分子 SOC
 
 #### 3.1 从仓库安装 SOC
 
