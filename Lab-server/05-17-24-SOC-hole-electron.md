@@ -198,6 +198,8 @@ MCubeGen.py -e s1,t1:hole,ele *.chk
 for i in *.chk; do formchk $i; done
 MCubeGen.py -e s1,t1:hole,ele *.fchk
 cd MCUBEG/
+cd VCUBE/
+vim renderall.sh
 ```
 
 
