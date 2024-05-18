@@ -67,6 +67,7 @@ sudo mdadm --create --verbose /dev/md0 --level=10 --raid-devices=4 /dev/sdb1 /de
     sudo systemctl enable zerotier-one.service    #开机自启
 ![输入图片说明](img/bf98d0c0-0f9d-11ef-912f-13072b0a8b81_20240511215246.jpeg)
 
+需要等 5-10 延迟
 用 移动热点 在 powershell 里 ping 192.168.192.101
 
 ![输入图片说明](img/90453690-0f9a-11ef-ac42-e112b780f144_20240511212958.jpeg)
