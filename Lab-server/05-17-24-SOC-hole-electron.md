@@ -204,7 +204,8 @@ conda develop ~/software/coordmagic
 cd 计算文件夹下
 for i in *.chk; do formchk $i; done
 MCubeGen.py -h
-MCubeGen.py -e s1,t1:hole,ele *.fchk
+MCubeGen.py -e s1,t1:hole,ele *.fchk       # 生成 s 态和 t 态的空穴电子分布
+MCubeGen.py -o h-l *.fchk                  # 生成 homo 和 lumo 分布
 cd MCUBEG/
 cd VCUBE/
 vim renderall.sh
