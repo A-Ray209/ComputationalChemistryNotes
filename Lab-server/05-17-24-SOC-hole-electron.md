@@ -26,8 +26,18 @@ source ~/.bashrc
 ```
 cd ~/yhy/051524/           # 到计算文件夹下
 tmwfn.py -o h1-l1 *.log    # 查看 HOMO-LUMO 能级 
+tmwfn.py -o h,l --colcalc "gap=c1-c0" *.log       # 查看能级，colcale 函数 定义 gap 计算 c1 列 和 c0 列差值
+cd ~/yhy/051524/tdvert     # 垂直激发态 tdvert 与 基态 opt 构型相同，HOMO-LUMO无差别
+tmwfn.py -e s3 *.log       # 查看分子 s1-s3 能级信息
+tmwfn.py -e t3 *.log       # 查看分子 t1-t3 能级信息
+tmwfn.py -e st1 *.log      # 查看 s1，t1 能级信息
+tmwfn.py -e st1  --colcalc "dEst=c1-c6" *.log     # 查看ΔEst 值，colcale 函数 计算 c1 列 和 c6 列差值
+tmwfn.py -e st3c *.log     # 查看 s1，t1 能级信息,soc 信息，需要计算 soc 见下文
+tmwfn.py -e st3cm *.log    # 查看 s1，t1 能级信息,振子强度，电子-空穴距离重叠程度，LE-CT指数越正越CT，soc 信息
 ```
 结束
+
+![输入图片说明](img/LM-LM-SOC.png)
 
 ### 2. 绘制轨道图
 
