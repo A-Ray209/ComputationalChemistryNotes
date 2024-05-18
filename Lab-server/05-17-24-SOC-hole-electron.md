@@ -35,9 +35,9 @@ tmwfn.py -e st1  --colcalc "dEst=c1-c6" *.log     # 查看ΔEst 值，colcale �
 tmwfn.py -e st3c *.log     # 查看 s1，t1 能级信息,soc 信息，需要计算 soc 见下文
 tmwfn.py -e st3cm *.log    # 查看 s1，t1 能级信息,振子强度，电子-空穴距离重叠程度，LE-CT指数越正越CT，soc 信息
 ```
-结束
-
 ![输入图片说明](img/LM-LM-SOC.png)
+
+结束
 
 ### 2. 绘制轨道图
 
