@@ -22,7 +22,7 @@ source ~/.bashrc
 ```
 脚本安装结束
 
-用脚本查看能级
+ **用脚本查看能级** 
 ```
 cd ~/yhy/051524/           # 到计算文件夹下
 tmwfn.py -o h1-l1 *.log    # 查看 HOMO-LUMO 能级 
@@ -41,13 +41,19 @@ tmwfn.py -e st3cm *.log    # 查看 s1，t1 能级信息,振子强度，电子-�
 
 ### 2. 绘制轨道图
 
-
+方式一：用高斯命令 cubegen
 ```
 cd ~/yhy/051524/                                        # 到计算文件夹下
 cubegen 0 mo=homo,lumo QAO-TF.fchk QAO-TF.cube 0 h      # 利用 cubgen 命令生成 .cube 绘图文件
-
 for i in *.fchk; do cubegen 0 mo=homo,lumo $i ${i/.fchk/}.cube 0 h; done       # 利用循环命令批量导出 .cube 文件
 ```
+方式二：利用脚本批量生成 cube 文件 见下文 4.2
+
+```
+MCubeGen.py -e s1,t1:hole,ele *.fchk       # 生成 s 态和 t 态的空穴电子分布
+MCubeGen.py -o h-l *.fchk                  # 生成 homo 和 lumo 分布
+```
+方式一：使用 GaussView
 
 用 GaussView 打开 .cube 文件，
 右键 - Results - Surface - New Surface
@@ -61,6 +67,8 @@ for i in *.fchk; do cubegen 0 mo=homo,lumo $i ${i/.fchk/}.cube 0 h; done       #
 File - Preference - Couor - Surface Color
 
 ![输入图片说明](img/HOMOLUMO.png)
+
+方式二：使用 VMD 命令，见 VMD 一节
 
 ### 3.  计算分子 SOC
 
@@ -162,7 +170,7 @@ export PATH=/home/jzq/software/Multiwfn_[版本号]_bin_Linux:$PATH
 ```
 chmod +x /home/jzq/software/Multiwfn_[版本号]_bin_Linux/Multiwfn
 ```
-##### 4.1.6 配置settings.ini
+##### 4.1.6 配置 settings.ini
 
 编辑 Multiwfn 目录下的 settings.ini，搜索 nthreads，将之数值改为计算时要用的并行核数，通常设为CPU的物理核心数即可
 formchkpath：定义的是Gaussian目录下的formchk程序的路径
