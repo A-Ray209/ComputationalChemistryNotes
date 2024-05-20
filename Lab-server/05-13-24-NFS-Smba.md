@@ -127,6 +127,7 @@ su jzq                             # 登录用户目录
 setsebool -P use_nfs_home_dirs 1   # 在共享 home 目录的情况下
 ssh-keygen                         # 生成 key
 ssh-copy-id node02                 # 发送 key 到客户端
+more /var/log/secure               # 查看 ssh 登录日志
 ```
 
 
