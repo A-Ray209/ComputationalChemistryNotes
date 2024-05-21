@@ -50,6 +50,7 @@ for i in *.fchk; do cubegen 0 mo=homo,lumo $i ${i/.fchk/}.cube 0 h; done       #
 方式二：利用脚本批量生成 cube 文件 见下文 4.2
 
 ```
+cd tdvert                                  # 垂直激发态
 MCubeGen.py -e s1,t1:hole,ele *.fchk       # 生成 s 态和 t 态的空穴电子分布
 MCubeGen.py -o h-l *.fchk                  # 生成 homo 和 lumo 分布
 ```
