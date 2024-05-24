@@ -108,6 +108,14 @@ e10            # 每次转 10°
 
 ![输入图片说明](img/gentorXYZ.png)
 
-用xyz2QC工具将traj.xyz转化成含多任务的单一Gaussian输入文件Gaussian.gjf，为省时间计算级别还是用粗糙的PM6-D3。
+用xyz2QC工具将traj.xyz转化成含多任务的单一Gaussian输入文件Gaussian.gjf，为省时间计算级别还是用粗糙的 PM6-D3
 
-按照之前的步骤把能量取出来，并且把每个点对应的Cl7-C4-C1-Br8二面角数值附上去，用Origin作图
+先将原来分子的 gjf 文件名改为 template.gjf 放在 tarj.xyz 文件夹中
+
+启动 xyz2QC ,选 1 再填入 ./traj.xyz 再回车默认生成所有片段
+
+![输入图片说明](img/xyz2OC.png)
+
+即可生成所有构型的 gjf 文件
+
+按照之前的步骤把能量取出来，并且把每个点对应的二面角数值附上去，用 Origin 作图即可
