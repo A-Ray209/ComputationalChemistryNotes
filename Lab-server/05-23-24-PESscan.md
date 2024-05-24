@@ -103,3 +103,11 @@ e10            # 每次转 10°
 ```
 运行 gentor 
 ![输入图片说明](img/gentor.png)
+
+结构输出在了当前目录下的traj.xyz中。将此文件载入VMD播放一下，会看到下面的动画
+
+![输入图片说明](img/gentorXYZ.png)
+
+用xyz2QC工具将traj.xyz转化成含多任务的单一Gaussian输入文件Gaussian.gjf，为省时间计算级别还是用粗糙的PM6-D3。
+
+按照之前的步骤把能量取出来，并且把每个点对应的Cl7-C4-C1-Br8二面角数值附上去，用Origin作图
