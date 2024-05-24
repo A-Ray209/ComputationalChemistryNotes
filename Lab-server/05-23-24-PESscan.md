@@ -111,7 +111,7 @@ e10            # 每次转 10°
 
 用xyz2QC工具将traj.xyz转化成含多任务的单一Gaussian输入文件Gaussian.gjf，为省时间计算级别还是用粗糙的 PM6-D3
 
-先将原来分子的 gjf 文件名改为 template.gjf 放在 tarj.xyz 文件夹中
+先将原来分子的 gjf 文件名改为 template.gjf（去掉opt做单点能计算） 放在 tarj.xyz 文件夹中
 
 启动 xyz2QC ,选 1 再填入 ./traj.xyz 再回车默认生成所有片段
 
