@@ -102,6 +102,7 @@ Tot h-e  overlap: 0.15382
 e10            # 每次转 10°
 ```
 运行 gentor 
+
 ![输入图片说明](img/gentor.png)
 
 结构输出在了当前目录下的traj.xyz中。将此文件载入VMD播放一下，会看到下面的动画
