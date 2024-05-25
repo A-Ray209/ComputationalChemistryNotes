@@ -5,7 +5,7 @@
 alias tkf='grep Normal *.log'                                                          # 查看是否正常结束
 alias tkd='for i in *.log; do echo "$i: $(grep -c 'Done' "$i") steps"; done'           # 查看循环步数
 alias tksm='for i in *.log; do echo -e "\n$i:\n$(tsmonitor "$i" | tail -n 5)\n"; done' # 查看循环过程是否收敛，是否正常结束
-alias soc_s2t3='for i in *.log; do calcsoc -s 2 -t 3 $i > ${i/.log/}_soc.txt; done '
+alias soc_s2t3='for i in *.log; do calcsoc -s 2 -t 3 $i > ${i/.log/}_soc.txt; done'
 ```
 最后一个 tksm 命令比 tkd 更加详细，但需要钟老师脚本 tsmonitor 作为环境变量
 
