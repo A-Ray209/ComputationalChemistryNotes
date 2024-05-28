@@ -40,6 +40,12 @@ ping www.baidu.com      # 测试
 5. 修改 slurm 配置文件中的主机名称
 6. 查看 zerotier 是否正常工作
 
+#### 1.3 加入钟老师计算机集群
+
+1. 在新集群中添加 jzq 账户 （userid=1003）
+2. 将旧集群的 jzq 用户的 （userid=1000）改为（userid=1300），使用 root 权限
+3. 在新集群中添加 /data 缓存路径
+
 
 ### 2. 定义计算 orca ΔEst 命令
 
