@@ -62,9 +62,9 @@ sudo mdadm --create --verbose /dev/md0 --level=10 --raid-devices=4 /dev/sdb1 /de
 登录 服务器 ssh
 
     curl -s https://install.zerotier.com | sudo bash   # 下载 zerotier 
-    sudo zerotier-cli join #######       # 加入网络 ID
-    sudo zerotier-cli listnetworks       # 查看网段（结果）
-    sudo systemctl enable zerotier-one.service    #开机自启
+    sudo zerotier-cli join af415e486fd8f364            # 加入网络 ID
+    sudo zerotier-cli listnetworks                     # 查看网段（结果）
+    sudo systemctl enable zerotier-one.service         # 开机自启
 ![输入图片说明](img/bf98d0c0-0f9d-11ef-912f-13072b0a8b81_20240511215246.jpeg)
 
 需要等 5-10 延迟
