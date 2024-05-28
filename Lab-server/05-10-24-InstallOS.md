@@ -56,7 +56,7 @@ following partitioning scheme: Standard Partition
 定义服务器名称
 
     hostname   #当前主机名称
-    sudo hostnamectl hostmane node01     
+    sudo hostnamectl hostname node01     
 
 固定ip地址
 
