@@ -46,7 +46,7 @@ ping www.baidu.com      # 测试
 2. 将旧集群的 jzq 用户的 （userid=1000）改为（userid=1300），使用 root 权限
 3. 在新集群中添加 /data 缓存路径
 
-
+> 总结：组建服务器集群，每一台服务器文件结构，环境最好相同，否则会出现很多问题
 ### 2. 定义计算 orca ΔEst 命令
 
 orcas_est.sh 放置于 ztools 文件夹下（环境变量）
