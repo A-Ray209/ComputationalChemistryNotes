@@ -2,9 +2,9 @@
 
 #### 1.1 查看 Gaussian 任务
 ```
-alias tkf='grep Normal *.log'                                                          # 查看是否正常结束
-alias tkd='for i in *.log; do echo "$i: $(grep -c 'Done' "$i") steps"; done'           # 查看循环步数
-alias tksm='for i in *.log; do echo -e "\n$i:\n$(tsmonitor "$i" | tail -n 5)\n"; done' # 查看循环过程是否收敛，是否正常结束
+alias tk_f='grep Normal *.log'                                                          # 查看是否正常结束
+alias tk_d='for i in *.log; do echo "$i: $(grep -c 'Done' "$i") steps"; done'           # 查看循环步数
+alias tk_sm='for i in *.log; do echo -e "\n$i:\n$(tsmonitor "$i" | tail -n 5)\n"; done' # 查看循环过程是否收敛，是否正常结束
 alias soc_s2t3='for i in *.log; do calcsoc -s 2 -t 3 $i > ${i/.log/}_soc.txt; done'
 ```
 最后一个 tksm 命令比 tkd 更加详细，但需要钟老师脚本 tsmonitor 作为环境变量
@@ -13,7 +13,7 @@ alias soc_s2t3='for i in *.log; do calcsoc -s 2 -t 3 $i > ${i/.log/}_soc.txt; do
 #### 1.2 查看 Orca 任务
 
 ```
-alias tkof='grep NORMALLY $(find . -name "*.out" ! -name "slurm-*")'      # 查看是否正常结束
+alias tk_of='grep NORMALLY $(find . -name "*.out" ! -name "slurm-*")'      # 查看是否正常结束
 ```
 
 ### 2. TSCT 计算 跃迁密度 和 空穴电子重叠
