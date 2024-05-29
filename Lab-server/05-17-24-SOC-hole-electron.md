@@ -3,7 +3,7 @@
 Linux 计算的 .chk 文件为二进制文件，放在 Windows 电脑要经过转化
 ```
 for i in *.chk; do formchk $i; done                # 将 .chk 转为 .fchk
-alias fck='for i in *.chk; do formchk $i; done'    # 定义 fck 批量代码  
+alias f_chk='for i in *.chk; do formchk $i; done'    # 定义 fck 批量代码  
 ```
 
 方式一：
