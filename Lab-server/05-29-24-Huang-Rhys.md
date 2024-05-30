@@ -27,11 +27,11 @@ cd 到当前文件夹,输入 dushin 开始计算
 dushin 程序会在当前目录产生一大堆输出文件，主要有用的就这两个：
 
 dushin.out：包含主要输出信息的文件。
-1. 其中Dushinsky matrix, ncs 2 in terms of ncs 1下面输出的是第二个输入文件的正则坐标(normal coordinates, ncs)是怎么由第一个输入文件的正则坐标组合而成的，包括组合系数和贡献百分比，只有贡献较大的会被输出。
-2. 下面还会输出Dushinsky matrix, ncs 1 in terms of ncs 2，是描述第一个输入文件的正则坐标怎么由第二个输入文件的正则坐标组合而成的。再往下是Displacement: in terms of nc of 1 THEN of nc of 2，前几列是把位移和重组能按照第一个输入文件中的正则模式分解的结果，后几列是按照第二个输入文件的正则模式分解的结果。Q是指位移在此正则坐标上的分量，lam是每个正则模式对重组能的贡献量λ_i(cm^-1)。
+1. 其中 Dushinsky matrix, ncs 2 in terms of ncs 1下面输出的是第二个输入文件的正则坐标(normal coordinates, ncs)是怎么由第一个输入文件的正则坐标组合而成的，包括组合系数和贡献百分比，只有贡献较大的会被输出。
+2. 下面还会输出 Dushinsky matrix, ncs 1 in terms of ncs 2，是描述第一个输入文件的正则坐标怎么由第二个输入文件的正则坐标组合而成的。再往下是Displacement: in terms of nc of 1 THEN of nc of 2，前几列是把位移和重组能按照第一个输入文件中的正则模式分解的结果，后几列是按照第二个输入文件的正则模式分解的结果。Q是指位移在此正则坐标上的分量，lam 是每个正则模式对重组能的贡献量λ_i(cm^-1)。
 3. 末尾total reorg energy (cm**-1, kcal/mol)就是∑λ_i，前两个值单位是cm^-1，分别是第一个和第二个输入文件的正则坐标对重组能贡献的加和，后两个值只不过是把单位换成了kcal/mol。
 
-supplem.dat：包含了被计算的体系的正则坐标、频率，Duschinsky矩阵，各正则模式对位移和重组能的贡献（eV）。其实和dushin.out差不多，只不过输出格式、单位变了变。
+supplem.dat：包含了被计算的体系的正则坐标、频率，Duschinsky矩阵，各正则模式对位移和重组能的贡献（eV）。其实和 dushin.out 差不多，只不过输出格式、单位变了变。
 
 #### 1.3 数据处理,计算 Huang-Rhys 因子
 
@@ -110,7 +110,9 @@ cd bin/         # 查看安装目录下的执行文件,并添加到环境变量
 ```
 安装结束
 
-查看手册 (FCclasses3_man.pdf) 如何计算 [手册下载链接](http://nextcloud.area.fi.cnr.it/index.php/s/YAJc9WCY78g7Mt7)
+#### 3.2 使用 FCclasses 计算 Huang-Rhys 因子
+
+查看使用手册 (FCclasses3_man.pdf) 如何计算 [手册下载链接](http://nextcloud.area.fi.cnr.it/index.php/s/YAJc9WCY78g7Mt7)
 ```
 cd ~/lrh/052424/freq/                  # 到计算文件夹下
 for i in *.chk; do formchk $i; done    # 转换成 fchk 文件
@@ -134,7 +136,8 @@ vim displacement.dat
 vim spec_Int_TD.dat
 
 ```
-
+将 Gaussian view 中 vibration 的表格中 Freq 复制到 origin 中做 x，HuangRhys.dat中的数据做 y 作图有：
+![输入图片说明](img/91e0a33b7bd71ee82a1bd20cad4d7dd.png)
 
 
 
