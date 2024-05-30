@@ -103,6 +103,7 @@ desmos 公式演示 [链接](https://www.desmos.com/calculator)
 解压到 software 文件夹下面
 
 ```
+source /opt/intel/oneapi/setvars.sh                                   # （临时）加载 Intel 编译器
 ./configure --with-mkl --prefix=/home/jzq/software/fcclasses3-3.0.3   # 配置安装(路径)
 make            # 安装
 make install    # 安装
