@@ -147,8 +147,8 @@ DMB_wtune_tdvert	1	Singlet	3.075	Triplet	2.9746		0.1004
 ```
 mkdir tdopt       
 cp tdvert/* tdopt/
-qcinp.py -a opt -A _tdopt_s1 *.log                                # 将调控泛函算的 tdvert 优化单线态
-qcinp.py -r td -a 'opt td(Triplet)' -A _tdopt_t1 *_wtune.log      # 将调控泛函算的 tdvert 优化三线态
+qcinp.py -a 'opt emp(gd3bj) scrf(solvent=diphenylether)' -A _tdopt_s1 *.log                                # 将调控泛函算的 tdvert 优化单线态
+qcinp.py -r 'td' -a 'opt td(Triplet)  emp(gd3bj) scrf(solvent=diphenylether)' -A _tdopt_t1 *_wtune.log      # 将调控泛函算的 tdvert 优化三线态
 head *tdopt*                                                      # 检查表头关键字
 g16s *tdopt*                                                      # 提交任务
 ```
