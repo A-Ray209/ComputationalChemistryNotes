@@ -133,6 +133,26 @@ N            -3.200761   -1.840113   -0.583320
 ```
 后续计算均使用这些关键字进行计算
 
+通过计算结果有
+
+```
+8phdmb_wtune_tdvert	1	Singlet	3.0554	Triplet	2.9537		0.1017
+8pydmb_wtune_tdvert	1	Singlet	3.0683	Triplet	2.962		0.1063
+DMB_wtune_tdvert	1	Singlet	3.075	Triplet	2.9746		0.1004
+```
+发现 ΔEst 区分不出差距
+
+所以将分别优化单线态和三线态进行计算
+
+```
+mkdir tdopt       
+cp tdvert/* tdopt/
+qcinp.py -a opt -A _tdopt_s1 *.log                                # 将调控泛函算的 tdvert 优化单线态
+qcinp.py -r td -a 'opt td(Triplet)' -A _tdopt_t1 *_wtune.log      # 将调控泛函算的 tdvert 优化三线态
+head *tdopt*                                                      # 检查表头关键字
+g16s *tdopt*                                                      # 提交任务
+```
+
 #### 3. 加振动
 
 
