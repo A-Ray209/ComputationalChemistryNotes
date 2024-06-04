@@ -90,6 +90,12 @@ TQAO-TF-SOS-wPBEPP86    -0.024     3.376     3.400
 ```
 根据实验测得 ΔEst 为 0.25 eV,结合计算结果，应该选择 SOS-PBE-QIDH 和 wB2GP-PLYP 为计算基组。
 
+运用嵌套循环，将  SOS-PBE-QIDH 和 wB2GP-PLYP 写入剩下四个分子的文件，将需要的泛函列入 ./dftlist 文件里
+
+```
+dos2unix dftlist                                                                                             # 将换行符转换为 Linux 系统下的换行符
+for m in *.inp; do for i in $(cat ./dftlist); do sed "s/mPW2PLYP/$i/g" $m > ${m/.inp/}-${i}.inp; done;done   # 嵌套循环，先循环文件，再循环替换泛函
+```
 
 #### 3. 使用 orca 的 PBE0 计算 soc
 
