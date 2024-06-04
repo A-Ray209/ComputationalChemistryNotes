@@ -126,7 +126,7 @@ ls *.fcc                               # 查看 fcc 文件
 gen_fcc_dipfile -i DMB_tdopt_freq.fchk # 生成生成偶极子文件
 mv eldip_DMB_tdopt_freq_fchk eldip_DMB # 重命名
 
-fcclasses3 -h                          # 生成计算配置文件
+fcclasses3 -h                          # 生成计算配置文件 见文末
 vim fcclasses.inp                      # 编辑
 fcclasses3 fcclasses.inp               # 提交计算
 
@@ -144,7 +144,25 @@ vim spec_Int_TD.dat
 ![输入图片说明](img/91e0a33b7bd71ee82a1bd20cad4d7dd.png)
 
 
-
+附： 提交 Fcclasses3 的模板文件
+```
+$$$
+PROPERTY     =   OPA  ; OPA/EMI/ECD/CPL/RR/TPA/TPCD/MCD/IC/NRSC
+MODEL        =   AH   ; AS/ASF/AH/VG/VGF/VH
+DIPOLE       =   FC   ; FC/HTi/HTf
+TEMP         =   0.00 ; (temperature in K) 
+;DE           = (read) ; (adiabatic/vertical energy in eV. By default, read from state files) 
+BROADFUN     =   GAU  ; GAU/LOR/VOI
+HWHM         =   0.01 ; (broadening width in eV)
+METHOD       =   TD   ; TI/TD
+;VIBRATIONAL ANALYSIS 
+NORMALMODES  =   COMPUTE   ; COMPUTE/READ/IMPLICIT
+COORDS       =   CARTESIAN ; CARTESIAN/INTERNAL
+;INPUT DATA FILES 
+STATE1_FILE  =   DMB_s0.fcc    # 状态 1 的 fcc 文件
+STATE2_FILE  =   DMB_s1.fcc    # 状态 2 的 fcc 文件
+ELDIP_FILE   =   eldip_DMB
+```
 
 
 
