@@ -115,6 +115,9 @@ cd bin/         # 查看安装目录下的执行文件,并添加到环境变量
 
 查看使用手册 (FCclasses3_man.pdf) 如何计算 [手册下载链接](http://nextcloud.area.fi.cnr.it/index.php/s/YAJc9WCY78g7Mt7)
 ```
+source /opt/intel/oneapi/setvars.sh    # 需要 Intel 环境变量，否则会出现下面错误
+# gen_fcc_state: error while loading shared libraries: libmkl_intel_lp64.so.2: cannot open shared object file: No such file or directory
+
 cd ~/lrh/052424/freq/                  # 到计算文件夹下（使用 tdopt 计算 freq 或者优化后的结构算 单点的 freq）
 for i in *.chk; do formchk $i; done    # 转换成 fchk 文件
 gen_fcc_state -i DMB_freq.fchk         # 生成 s0 态的 fcc 文件
