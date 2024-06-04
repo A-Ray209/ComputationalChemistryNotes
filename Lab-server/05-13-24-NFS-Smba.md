@@ -71,6 +71,7 @@ yum install -y  samba
 vim /etc/samba/smb.conf     # 编辑配置文件
 ```
 文件内容改为如下
+```
 [jzq]
     workgroup = WORKGROUP
     security = user
@@ -86,7 +87,7 @@ vim /etc/samba/smb.conf     # 编辑配置文件
     valid users = jzq
     create mask = 0775
     directory mask = 0775
-
+```
 设置 smba 用户
 
 ```
