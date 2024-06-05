@@ -159,8 +159,8 @@ METHOD       =   TD   ; TI/TD
 NORMALMODES  =   COMPUTE   ; COMPUTE/READ/IMPLICIT
 COORDS       =   CARTESIAN ; CARTESIAN/INTERNAL
 ;INPUT DATA FILES 
-STATE1_FILE  =   DMB_s0.fcc    # 状态 1 的 fcc 文件
-STATE2_FILE  =   DMB_s1.fcc    # 状态 2 的 fcc 文件
+STATE1_FILE  =   DMB_s0.fcc    ; 状态 1 的 fcc 文件
+STATE2_FILE  =   DMB_s1.fcc    ; 状态 2 的 fcc 文件
 ELDIP_FILE   =   eldip_DMB
 ```
 
