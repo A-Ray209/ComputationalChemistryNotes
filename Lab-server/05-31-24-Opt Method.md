@@ -92,6 +92,8 @@ tmwfn.py -p d DMB_n*.log     # 查看分子偶极
 调控过程如下
 
 将 gjf 表头修改为下列内容
+
+IOp(3/174=1000000,3/175=1190800,3/177=274600,3/178=5315700) 这个是lc-whpbe的 # em(gd3bj)
 ```
 git clone https://gitee.com/coordmagic/xwtune           # 计算调控泛函需要的脚本，添加环境变量
 
