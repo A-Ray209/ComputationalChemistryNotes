@@ -106,6 +106,13 @@ grep 'sum_soc, <S1|Hso|T1,1,0,-1>' *.txt                                # 抓取
 
 ![输入图片说明](img/SOC_1.png)
 
+附：报错情况 1
+```
+#export PATH=/home/jzq/software/openmpi/bin:$PATH
+export PATH=/home/software/openmpi/openmpi416-gcc113/bin:$PATH
+```
+![输入图片说明](img/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240607092131.png)
+使用 openmpi 位置不对，应该调成 /home/jzq/software/openmpi/bin:$PATH
 #### 3.3 上传 Gitee 仓库
 
 将钟老师编译好的 pysoc 包上传到仓库
