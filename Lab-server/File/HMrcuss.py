@@ -8,7 +8,7 @@ import math
 parser = argparse.ArgumentParser(description="需要计算SOC、ΔE(st)、T、fcclasses.out和HuangRhys.dat")
 parser.add_argument("NAC",type=float, help="SOC/NAC：cm-1")
 parser.add_argument("delta",type=float, help="ΔEst/ΔG：eV")
-parser.add_argument("T",default=298.15,type=float, help="温度：K")
+parser.add_argument("T",nargs='?',default=298.15,type=float, help="温度：K")
 
 args = parser.parse_args()
 
