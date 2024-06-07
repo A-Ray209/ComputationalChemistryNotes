@@ -166,5 +166,5 @@ rate_constant = marcus_rate(NAC,NAC_cm, λM, ΔG, w_eff, S, T)
 print(f"Marcus 速率常数: {rate_constant:.4e} s^-1")
 
 ```
-
+对编写 Python 代码有了初步的认识
 
