@@ -121,8 +121,12 @@ STATE1_FILE  =   DFBP-CZDABNA_tdopt_freq.fcc           # 始态 s1
 STATE2_FILE  =   DFBP-CZDABNA_freq.fcc                 # 末态 s0
 ELDIP_FILE   =   eldip_DFBP-CZDABNA_tdopt_freq_fchk    # s1 的偶极子文件
 ```
-更改 MODEL 可以实现不同的近似情况
+更改 MODEL 可以计算不同的近似情况
 
+#### 2.2 结果处理
 
+将 Clas_spectrum_Wigner_shape.dat 和 Clas_spectrum_Boltzmann_shape.dat 转入 origin 作图
 
+横坐标是 eV 需要转为 nm 
+![输入图片说明](img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240613185400.png)
 
