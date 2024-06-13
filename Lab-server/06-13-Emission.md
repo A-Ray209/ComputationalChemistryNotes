@@ -43,7 +43,7 @@ END
 
 #### 1.3 使用近似方法计算
 
-VG : 
+最简单模型，垂直梯度 VG : 
 
 ```
 ! PBE0 def2-SVP TIGHTSCF ESD(FLUOR) 
@@ -67,7 +67,7 @@ END
 基态坐标
 *
 ```
-AHAS : 
+一个更好的模型，即 "一步之后的绝热赫赛斯 "模型 AHAS : 
 ```
 ! PBE0 def2-SVP TIGHTSCF ESD(FLUOR) 
 %TDDFT 
