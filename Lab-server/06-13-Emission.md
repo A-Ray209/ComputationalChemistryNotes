@@ -1,2 +1,44 @@
-### Orca 计算振动分辨荧光光谱
+### 1 Orca 计算振动分辨荧光光谱
 
+参考 orca 计算手册 orca_manual_5_0_3.pdf
+
+#### 1. 计算的文件
+
+基态的 opt freq ，激发态的 td opt freq
+
+使用 fchk2hess 脚本将 fchk 文件转换成 .hess 文件（基态、激发态）
+
+编写 orca 计算文件 eg DFBP-CZDABNA.inp
+```
+! PBE0 def2-SVP TIGHTSCF ESD(FLUOR)      # 计算振动分辨荧光光谱关键词
+%TDDFT 
+NROOTS 5 
+IROOT 1 
+END 
+%ESD 
+GSHESSIAN "DFBP-CZDABNA_freq.hess"        # 基态文件
+ESHESSIAN "DFBP-CZDABNA_tdopt_freq.hess"  # 激发态文件
+DOHT TRUE 
+LINES VOIGT                               # 线形函数
+LINEW 75                                  # 单位：cm-1 调整线形状
+INLINEW 200                               # 调整线形状
+END 
+%pal nprocs 40
+     end
+%MaxCore 2560
+* xyz 0 1
+# 基态坐标
+*
+```
+1. 线形函数：ELTA（用于 Dirac delta）、LORENTZ（默认）、GAUSS（用于高斯）和 VOIGT（高斯和洛伦兹的乘积）
+2. 如果要分别控制 GAUSS 和 LORENTZ 的线形，可以为 Lorenztian 设置 LINEW，为 Gaussian 设置 INLINEW（"I "表示非均质线宽）
+3. LINEW 和 INLINEW 并不是这些曲线的全宽半最大值 (FWHM)。不过，它们之间的关系如下 FWHM_lorentz = 2 × LINEW 和 FWHM_gauss = 2.355 × INLINEW
+4. 总的半峰宽 FWHM_voigt ![公式](img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240613174452.png)
+
+使用 orcas 命令提交任务，计算 17 个小时后得到计算结果
+
+#### 1.2 结果处理
+计算得到 DFBP-CZDABNA.spectrum 文件，第一列是波数 （cm-1）需要转成 nm 第二列是 TotalSpectrum，使用 origin 作图有
+![计算得到的光谱](img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240613173230.jpg)
+
+#### 1.3 
