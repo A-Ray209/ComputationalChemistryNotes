@@ -90,3 +90,39 @@ END
 基态的坐标
 *
 ```
+
+### 2. 使用 Fcclasses3 计算发射光谱
+
+参考 Fcclasses3 手册：FCclasses3_tutorial.pdf
+参考文件：/home/jzq/software/fcclasses3-3.0.3/tests/properties/EMI/TD/VH
+
+#### 2.1 计算文件
+
+基态的 opt freq ，激发态的 td opt freq
+
+使用 gen_fcc_state -i *.fchk 命令将 fchk 文件转换成 .fcc 文件（基态、激发态）
+使用 gen_fcc_dipfile -i *.fchk 命令将 fchk 文件转换成 .fcc 文件（基态、激发态）
+
+编写计算文件
+```
+$$$
+PROPERTY     =   EMI  ; OPA/EMI/ECD/CPL/RR/TPA/MCD/IC
+MODEL        =   AH   ; AS/ASF/AH/VG/VGF/VH
+DIPOLE       =   FC   ; FC/HTi/HTf
+TEMP         =   298.15 ; (temperature in K) 
+BROADFUN     =   GAU  ; GAU/LOR/VOI
+HWHM         =   0.01 ; (broadening width in eV)
+METHOD       =   TD   ; TI/TD
+;VIBRATIONAL ANALYSIS 
+NORMALMODES  =   COMPUTE   ; COMPUTE/READ/IMPLICIT
+COORDS       =   CARTESIAN ; CARTESIAN/INTERNAL
+;INPUT DATA FILES 
+STATE1_FILE  =   DFBP-CZDABNA_tdopt_freq.fcc           # 始态 s1
+STATE2_FILE  =   DFBP-CZDABNA_freq.fcc                 # 末态 s0
+ELDIP_FILE   =   eldip_DFBP-CZDABNA_tdopt_freq_fchk    # s1 的偶极子文件
+```
+更改 MODEL 可以实现不同的近似情况
+
+
+
+
