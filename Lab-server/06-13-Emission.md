@@ -41,4 +41,52 @@ END
 计算得到 DFBP-CZDABNA.spectrum 文件，第一列是波数 （cm-1）需要转成 nm 第二列是 TotalSpectrum，使用 origin 作图有
 ![计算得到的光谱](img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240613173230.jpg)
 
-#### 1.3 
+#### 1.3 使用近似方法计算
+
+VG : 
+
+```
+! PBE0 def2-SVP TIGHTSCF ESD(FLUOR) 
+%TDDFT 
+NROOTS 5 
+IROOT 1 
+END 
+%ESD 
+GSHESSIAN "DFBP-CZDABNA_freq.hess" 
+ESHESSIAN "DFBP-CZDABNA_tdopt_freq.hess" 
+DOHT TRUE 
+HESSFLAG AHAS
+LINES VOIGT 
+LINEW 75 
+INLINEW 100
+END 
+%pal nprocs 40
+     end
+%MaxCore 2560
+* xyz 0 1
+基态坐标
+*
+```
+AHAS : 
+```
+! PBE0 def2-SVP TIGHTSCF ESD(FLUOR) 
+%TDDFT 
+NROOTS 5 
+IROOT 1 
+END 
+%ESD 
+GSHESSIAN "DFBP-CZDABNA_freq.hess" 
+ESHESSIAN "DFBP-CZDABNA_tdopt_freq.hess" 
+DOHT TRUE 
+HESSFLAG AHAS
+LINES VOIGT 
+LINEW 75 
+INLINEW 100
+END 
+%pal nprocs 40
+     end
+%MaxCore 2560
+* xyz 0 1
+基态的坐标
+*
+```
