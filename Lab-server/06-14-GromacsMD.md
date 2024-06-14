@@ -175,19 +175,8 @@ $ gmx mdrun -s prod.tpr -ntomp 32 -ntmpi 1 -deffnm prod -v           # 运行 GR
 ```
 在压缩的过程中，查看每次压缩的结果：用 VMD 加载 compress.gro （体系坐标），Main 窗口右键 load Data into Molcules 选择 compress.xtc（过程路径）CMD 命令窗口输入 pbc box 查看体系盒子边界
 
-$ gmx energy -f compress.edr   产看结果
-
-
-
- # energy.xvg   
-在 Windows 电脑上安装 QtGrace，并打开产看 energy.xvg
-
-
-
-
-
-
-
+$ gmx energy -f compress.edr   产看结果 # energy.xvg   
+在 Windows 电脑上安装 QtGrace，并打开产看 energy.xvg 
 
 附：
 compess.mdp
