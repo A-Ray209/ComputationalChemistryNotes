@@ -2,7 +2,7 @@
 
 #### 1.1 安装 Gromacs 
 
-#### 1.3 构建及优化分子力场参数脚本 ztop
+#### 1.2 构建及优化分子力场参数脚本 ztop
 
 参考网站：[构建及优化[小大]分子力场参数脚本 ztop.py](http://bbs.keinsci.com/forum.php?mod=viewthread&tid=22171&fromuid=63513)
 > 需要 python3 库 (Anaconda)：networkx(图论), openmm(动力学), parmed(力场文件io和转换)，pandas和numpy(数据处理), matplotlib(绘图)
@@ -33,7 +33,7 @@ vim ~/.bashrc
 export PATH=/home/jzq/software/packmol-20.14.4-docs1:$PATH
 ```
 
-#### 1.2 计算 DMB 的 Gromacs MD
+#### 1.3 计算 DMB 的 Gromacs MD
 
 计算文件准备
 ```
