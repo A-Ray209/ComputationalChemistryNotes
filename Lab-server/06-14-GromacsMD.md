@@ -27,7 +27,36 @@ All differences are within tolerance.
 
 计算文件准备
 ```
-$ mkdir lrh/20240515//bulk_md/DMB    
-$ cp ../../DMB.chk ./                 
+$ mkdir lrh/20240515//bulk_md/DMB   # 新建文件夹 
+$ cp ../../DMB.chk ./               # 需要优化后的基态 .chk 和 .log 文件
 $ cp ../../DMB.log ./
+
+$ ztop.py -r e -g "DMB.log" -o DMB.top,DMB.gro   # 生成 .top 和 .gro 文件
+$ ztop.py -r e -g "DMB.log" -o DMB.top,DMB.pdb
+```
+查看分子大小
+```
+$ Multiwfn DMB.fchk     # 使用 Multiwfn 测量大小
+100                     # Other functions (Part 1)
+21                      # Calculate properties based on geometry information for specific atoms
+size                    # Input "size" will report size information of the whole system
+
+Farthest distance:   52(H )  ---   78(H ):    17.469 Angstrom
+ vdW radius of   52(H ): 1.200 Angstrom
+ vdW radius of   78(H ): 1.200 Angstrom
+ Diameter of the system:    19.869 Angstrom
+ Radius of the system:     9.935 Angstrom
+ Length of the three sides:    19.522    13.843    10.442 Angstrom      # 分子的长宽高约为 20 15 11
+```
+构建盒子，参考网站[分子动力学初始结构构建程序 Packmol 的使用](http://sobereva.com/473)
+```
+vim packmol.inp            # 打包用的指令文件
+
+tolerance 2.0
+add_box_sides 1.2
+output DMB_box.pdb             # 名称
+structure DMB.pdb              # 名称
+  number 100                   # 数量
+  inside cube 0. 0. 0. 100.    # 边长
+end structure
 ```
