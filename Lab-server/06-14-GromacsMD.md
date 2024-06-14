@@ -33,7 +33,7 @@ vim ~/.bashrc
 export PATH=/home/jzq/software/packmol-20.14.4-docs1:$PATH
 ```
 
-#### 1.3 计算 DMB 的 Gromacs MD
+#### 1.2 计算 DMB 的 Gromacs MD
 
 计算文件准备
 ```
