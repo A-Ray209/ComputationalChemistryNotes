@@ -23,6 +23,16 @@ check networkx...networkx version 3.3 detected
 ...
 All differences are within tolerance.
 ```
+
+安装 packmol
+```
+tar -vxf packmol-20.14.4-docs1.tar.gz
+cd ./packmol-20.14.4-docs1.tar.gz/
+make
+vim ~/.bashrc
+export PATH=/home/jzq/software/packmol-20.14.4-docs1:$PATH
+```
+
 #### 1.3 计算 DMB 的 Gromacs MD
 
 计算文件准备
@@ -141,18 +151,25 @@ gen_vel                  = no         ; 不生成初始速度
 $ ml av                                                           # 列出当前可用的软件模块，以便用户知道可以加载哪些软件环境
 $ ml load gromacs                                                 # 设置 GROMACS 所需的环境变量和路径，使其可用。ml是module load的缩写，是模块化环境管理工具的一部分
 $ gmx                                                             # 运行 GROMACS 的命令行工具，显示可用的GROMACS子命令
-$ gmx grompp -f min.mdp -c DMB_box.pdb -p topol.top -o min.tpr    # 预处理 GROMACS 输入文件
-$ gmx mdrun -s min.tpr -ntomp 32 -ntmpi 1 -deffnm min -v          # 运行 GROMACS 模拟
+$ gmx grompp -f min.mdp -c DMB_box.pdb -p topol.top -o min.tpr    # 预处理 GROMACS 输入文件（合并要计算的文件）
+$ gmx mdrun -s min.tpr -ntomp 32 -ntmpi 1 -deffnm min -v          # 运行 GROMACS 模拟（运行 优化）
 
-$ vim compess.mdp
-$ gmx grompp -f compess.mdp -c min.gro -p topol.top -o compress.tpr
-$ gmx mdrun -s compress.tpr -ntomp 32 -ntmpi 1 -deffnm compress -v
+$ vim compess.mdp                                                         # 编辑压缩体系指令
+$ gmx grompp -f compess.mdp -c min.gro -p topol.top -o compress.tpr       # 预处理 GROMACS 输入文件（合并要计算的文件）  第一次
+$ gmx mdrun -s compress.tpr -ntomp 32 -ntmpi 1 -deffnm compress -v        # 运行 GROMACS 模拟（运行 压缩）
+$ vim compess.mdp                                                         # 修改压力参数，直到压缩成致密的正方体
+$ gmx grompp -f compess.mdp -c compress.gro  -p topol.top -o compress.tpr # 预处理 GROMACS 输入文件（合并要计算的文件）  第 n 次
+$ gmx mdrun -s compress.tpr -ntomp 32 -ntmpi 1 -deffnm compress -v        # 运行 GROMACS 模拟（运行 压缩）
 
-$ cp comp
-$ cp compess.mdp relax.mdp
-$ vim relax.mdp
-$ gmx grompp -f relax.mdp -c compress.gro  -p topol.top -o relax.tpr
-$ gmx mdrun -s relax.tpr -ntomp 32 -ntmpi 1 -deffnm relax -v
+$ cp compess.mdp relax.mdp                                          
+$ vim relax.mdp                                                      # 编辑舒展体系指令，直到体系不再随时间舒展
+$ gmx grompp -f relax.mdp -c compress.gro  -p topol.top -o relax.tpr # 预处理 GROMACS 输入文件（合并要计算的文件）
+$ gmx mdrun -s relax.tpr -ntomp 32 -ntmpi 1 -deffnm relax -v         # 运行 GROMACS 模拟（运行 舒展）
+
+$ cp relax.mdp prod.mdp                                              
+$ vim prod.mdp                                                       # 编辑动力学模拟指令
+$ gmx grompp -f prod.mdp -c relax.gro  -p topol.top -o prod.tpr      # 预处理 GROMACS 输入文件（合并要计算的文件）
+$ gmx mdrun -s prod.tpr -ntomp 32 -ntmpi 1 -deffnm prod -v           # 运行 GROMACS 模拟（运行 动力学模拟）
 ```
 
 
