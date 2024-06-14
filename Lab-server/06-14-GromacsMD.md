@@ -58,7 +58,7 @@ Farthest distance:   52(H )  ---   78(H ):    17.469 Angstrom
  Radius of the system:     9.935 Angstrom
  Length of the three sides:    19.522    13.843    10.442 Angstrom      # 分子的长宽高约为 20 15 11
 ```
-构建盒子，参考网站[分子动力学初始结构构建程序 Packmol 的使用](http://sobereva.com/473)
+构建盒子，参考网站：[分子动力学初始结构构建程序 Packmol 的使用](http://sobereva.com/473)
 ```
 vim packmol.inp            # 打包用的指令文件
 
@@ -154,6 +154,8 @@ $ gmx                                                             # 运行 GROMA
 $ gmx grompp -f min.mdp -c DMB_box.pdb -p topol.top -o min.tpr    # 预处理 GROMACS 输入文件（合并要计算的文件）
 $ gmx mdrun -s min.tpr -ntomp 32 -ntmpi 1 -deffnm min -v          # 运行 GROMACS 模拟（运行 优化）
 
+# -f 计算指令 -c 体系坐标 -p 体系参数 -o 要输出文件的名称
+
 $ vim compess.mdp                                                         # 编辑压缩体系指令
 $ gmx grompp -f compess.mdp -c min.gro -p topol.top -o compress.tpr       # 预处理 GROMACS 输入文件（合并要计算的文件）  第一次
 $ gmx mdrun -s compress.tpr -ntomp 32 -ntmpi 1 -deffnm compress -v        # 运行 GROMACS 模拟（运行 压缩）
@@ -171,9 +173,14 @@ $ vim prod.mdp                                                       # 编辑动
 $ gmx grompp -f prod.mdp -c relax.gro  -p topol.top -o prod.tpr      # 预处理 GROMACS 输入文件（合并要计算的文件）
 $ gmx mdrun -s prod.tpr -ntomp 32 -ntmpi 1 -deffnm prod -v           # 运行 GROMACS 模拟（运行 动力学模拟）
 ```
+在压缩的过程中，查看每次压缩的结果：用 VMD 加载 compress.gro （体系坐标），Main 窗口右键 load Data into Molcules 选择 compress.xtc（过程路径）CMD 命令窗口输入 pbc box 查看体系盒子边界
+
+$ gmx energy -f compress.edr   产看结果
 
 
-QtGrace
+
+ # energy.xvg   
+在 Windows 电脑上安装 QtGrace，并打开产看 energy.xvg
 
 
 
