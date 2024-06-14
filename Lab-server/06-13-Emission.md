@@ -111,7 +111,7 @@ MODEL        =   AH   ; AS/ASF/AH/VG/VGF/VH
 DIPOLE       =   FC   ; FC/HTi/HTf
 TEMP         =   298.15 ; (temperature in K) 
 BROADFUN     =   GAU  ; GAU/LOR/VOI
-HWHM         =   0.01 ; (broadening width in eV)
+HWHM         =   0.2 ; (broadening width in eV)
 METHOD       =   TD   ; TI/TD
 ;VIBRATIONAL ANALYSIS 
 NORMALMODES  =   COMPUTE   ; COMPUTE/READ/IMPLICIT
@@ -120,6 +120,9 @@ COORDS       =   CARTESIAN ; CARTESIAN/INTERNAL
 STATE1_FILE  =   DFBP-CZDABNA_tdopt_freq.fcc           # 始态 s1
 STATE2_FILE  =   DFBP-CZDABNA_freq.fcc                 # 末态 s0
 ELDIP_FILE   =   eldip_DFBP-CZDABNA_tdopt_freq_fchk    # s1 的偶极子文件
+
+SPCMIN = 0         ; 光谱范围 eV
+SPCMAX = 5
 ```
 更改 MODEL 可以计算不同的近似情况
 
