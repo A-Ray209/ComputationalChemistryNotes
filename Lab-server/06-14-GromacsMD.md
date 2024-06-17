@@ -41,7 +41,8 @@ $ mkdir lrh/20240515//bulk_md/DMB   # 新建文件夹
 $ cp ../../DMB.chk ./               # 需要优化后的基态 .chk 和 .log 文件
 $ cp ../../DMB.log ./
 
-$ conda activate ztop
+$ conda activate ztop    # 激活环境
+$ ztop.py --checkenv     # 检查环境
 $ ztop.py -r e -g "DMB.log" -o DMB.top,DMB.gro   # 生成 .top 和 .gro 文件（-r e 优化生成力常数 .top 文件）
 $ ztop.py -r e -g "DMB.log" -o DMB.top,DMB.pdb   # 
 ```
