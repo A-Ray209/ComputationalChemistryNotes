@@ -157,7 +157,11 @@ $ gmx grompp -f min.mdp -c DMB_box.pdb -p topol.top -o min.tpr    # 预处理 GR
 $ gmx mdrun -s min.tpr -ntomp 32 -ntmpi 1 -deffnm min -v          # 运行 GROMACS 模拟（运行 优化）
 
 # -f 计算指令 -c 体系坐标 -p 体系参数 -o 要输出文件的名称
-
+```
+如果出现如图所示警告，则需要输入 `gmx grompp -maxwarn 10 -f min.mdp -c 8phdmb_box.pdb -p topol.top -o min.tpr` 允许最大警告
+![输入图片说明](img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240617154247.png)
+![输入图片说明](img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240617154153.png)
+```
 $ vim compess.mdp                                                         # 编辑压缩体系指令
 $ gmx grompp -f compess.mdp -c min.gro -p topol.top -o compress.tpr       # 预处理 GROMACS 输入文件（合并要计算的文件）  第一次
 $ gmx mdrun -s compress.tpr -ntomp 32 -ntmpi 1 -deffnm compress -v        # 运行 GROMACS 模拟（运行 压缩）
