@@ -14,8 +14,8 @@
 conda create -n ztop -c conda-forge  networkx pandas numpy matplotlib parmed ambertools openmm
 
 # 用 conda 安装的时候，容易出现不同包之间的版本冲突问题，创建一个虚拟环境专门运行本脚本，下面的命令建立了一个名为 ztop 的虚拟环境，并在其中安装必要的包之后要运行本脚本之前先运行下面的命令激活该环境
-conda activate ztop
 
+conda activate ztop
 ztop.py --checkenv       # 检查安装结果
 
 check parmed...parmed version 4.2.2 detected
@@ -41,6 +41,7 @@ $ mkdir lrh/20240515//bulk_md/DMB   # 新建文件夹
 $ cp ../../DMB.chk ./               # 需要优化后的基态 .chk 和 .log 文件
 $ cp ../../DMB.log ./
 
+$ conda activate ztop
 $ ztop.py -r e -g "DMB.log" -o DMB.top,DMB.gro   # 生成 .top 和 .gro 文件（-r e 优化生成力常数 .top 文件）
 $ ztop.py -r e -g "DMB.log" -o DMB.top,DMB.pdb   # 
 ```
