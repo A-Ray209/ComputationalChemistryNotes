@@ -17,7 +17,27 @@ cd /software/cp2k-8.1
 make -j 4 ARCH=local VERSION="ssmp psmp"      #-j后面的数字是并行编译用的核数，机子有多少物理核心建议就设多少。
 ```
 
-### 2. Gromacs 模拟主客体相互作用动力学
+### 2. 计算电荷转移积分
+
+计算需要的程序：AICT、AICTs
+```
+sudo cp ~/CCflash/AICT /home/jzq/software/ztools
+sudo cp ~/CCflash/AICTs /home/jzq/software/ztools
+```
+计算过程：
+1. 优化 (分子1+分子2).gjf
+2. $ qcinp (分子1+分子2).log 产生 gif 文件
+3. $ cccm.py (分子1+分子2)..gjf  产生 A，B，AB 文件
+4. 提交 g16s A，B，AB 文件
+5. $ cccm.py 自动输出结果
+```
+$ cccm.py
+
+system              A_H--B_H (cm-1)     A_H--B_L (cm-1)     A_L--B_H (cm-1)     A_L--B_L (cm-1)
+6PhD1                  74.040            -231.906            -198.060             667.778
+```
+
+### 3. Gromacs 模拟主客体相互作用动力学
 
 与 06-14-24-GromacsMD.md 内容相同
 
@@ -74,4 +94,20 @@ MCB               1000
 
 ```
 
+### 4. 分析 Gromacs 计算结果
 
+Gromacs 进行动力学分析会将原子序号依次排列。
+
+举例：A 分子有 150 个原子、B  分子有 100 个原子，盒子中有 10 个 A 分子、100 个 B 分子，则 A 分子的编号为 1 - 1500 ，B 分子编号为 1501 - 11500。A1 为 1 - 150，A2 为 151 - 300。
+
+所以分析结果询问 GPT 时，有如下提问：
+
+> 我现在有经过gromacs计算得到的.gro和.xtc文件，我给出分子两部分的原子序号，帮我写一个python脚本使用MDanalysis分析，两部分中心距离，平面夹角
+
+> 体系中有n个分子，n以及相对原子序号从外部命令传入，脚本需要计算绝对原子序号
+
+> 需计算每一个分子内的片段1和片段2的 centroid 和 distance
+
+> 我需要修改输入的命令为python analyze_md.py your_file.gro your_file.xtc 100 "1,14,15,16,81,90" "24,83,61,19,20,22" 其中1,14,15,16,81,90是1部分，24,83,61,19,20,22是2部分
+
+代码结果为
