@@ -36,7 +36,7 @@ $ cccm.py
 system              A_H--B_H (cm-1)     A_H--B_L (cm-1)     A_L--B_H (cm-1)     A_L--B_L (cm-1)
 6PhD1                  74.040            -231.906            -198.060             667.778
 ```
-计算电荷转移速率：Marcus 方程
+计算电荷转移速率，Marcus 方程：
 积分、能极差、重组能
 ![输入图片说明](img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240620154932.jpg)
 ### 3. Gromacs 模拟主客体相互作用动力学
