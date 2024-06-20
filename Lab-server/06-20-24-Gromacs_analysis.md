@@ -36,7 +36,9 @@ $ cccm.py
 system              A_H--B_H (cm-1)     A_H--B_L (cm-1)     A_L--B_H (cm-1)     A_L--B_L (cm-1)
 6PhD1                  74.040            -231.906            -198.060             667.778
 ```
-
+计算电荷转移速率：Marcus 方程
+积分、能极差、重组能
+![输入图片说明](img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240620154932.jpg)
 ### 3. Gromacs 模拟主客体相互作用动力学
 
 与 06-14-24-GromacsMD.md 内容相同
@@ -111,3 +113,110 @@ Gromacs 进行动力学分析会将原子序号依次排列。
 > 我需要修改输入的命令为python analyze_md.py your_file.gro your_file.xtc 100 "1,14,15,16,81,90" "24,83,61,19,20,22" 其中1,14,15,16,81,90是1部分，24,83,61,19,20,22是2部分
 
 代码结果为
+
+```
+#!/bin/env python
+
+import MDAnalysis as mda
+import numpy as np
+import argparse
+
+# 解析命令行参数
+parser = argparse.ArgumentParser(description='Analyze MD trajectory.')
+parser.add_argument('gro_file', type=str, help='GRO file')
+parser.add_argument('xtc_file', type=str, help='XTC file')
+parser.add_argument('n_molecules', type=int, help='Number of molecules')
+parser.add_argument('rel_atoms_part1', type=str, help='Comma-separated relative atom indices for part 1')
+parser.add_argument('rel_atoms_part2', type=str, help='Comma-separated relative atom indices for part 2')
+args = parser.parse_args()
+
+# 解析相对原子序号字符串为整数列表
+def parse_indices(indices_str):
+    return [int(x) for x in indices_str.split(',')]
+
+rel_atoms_part1 = parse_indices(args.rel_atoms_part1)
+rel_atoms_part2 = parse_indices(args.rel_atoms_part2)
+
+# 计算绝对原子序号
+def calculate_absolute_indices(relative_indices, molecule_index, n_atoms_per_molecule):
+    return [i + molecule_index * n_atoms_per_molecule for i in relative_indices]
+
+# 读取文件
+gro_file = args.gro_file
+xtc_file = args.xtc_file
+
+# 分子数量
+n_molecules = args.n_molecules
+
+# 加载宇宙
+u = mda.Universe(gro_file, xtc_file)
+n_atoms_per_molecule = len(u.atoms) // n_molecules
+
+# 计算质心
+def calc_centroid(atomgroup):
+    return atomgroup.center_of_mass()
+
+# 计算两个平面的法向量
+def calc_plane_normal(atomgroup):
+    # 使用前三个原子计算平面
+    pos = atomgroup.positions[:3]
+    v1 = pos[1] - pos[0]
+    v2 = pos[2] - pos[0]
+    normal = np.cross(v1, v2)
+    normal /= np.linalg.norm(normal)
+    return normal
+
+# 计算夹角
+def calc_angle_between_planes(normal1, normal2):
+    cos_theta = np.dot(normal1, normal2)
+    angle = np.arccos(cos_theta)
+    return np.degrees(angle)
+
+# 存储结果
+distances = []
+angles = []
+
+# 遍历轨迹
+for ts in u.trajectory:
+    frame_distances = []
+    frame_angles = []
+    for mol_index in range(n_molecules):
+        part1_atoms = calculate_absolute_indices(rel_atoms_part1, mol_index, n_atoms_per_molecule)
+        part2_atoms = calculate_absolute_indices(rel_atoms_part2, mol_index, n_atoms_per_molecule)
+        
+        part1 = u.select_atoms("index " + " ".join(map(str, part1_atoms)))
+        part2 = u.select_atoms("index " + " ".join(map(str, part2_atoms)))
+        
+        centroid1 = calc_centroid(part1)
+        centroid2 = calc_centroid(part2)
+        distance = np.linalg.norm(centroid1 - centroid2)
+        frame_distances.append(distance)
+        
+        normal1 = calc_plane_normal(part1)
+        normal2 = calc_plane_normal(part2)
+        angle = calc_angle_between_planes(normal1, normal2)
+        frame_angles.append(angle)
+    distances.append(frame_distances)
+    angles.append(frame_angles)
+
+# 打印或保存结果
+ #print("Distances:", distances)
+ #print("Angles:", angles)
+
+# 可选择保存到文件
+
+distances = np.array(distances)
+angles = np.array(angles)
+
+output_filename = "distances_output.txt"
+with open(output_filename, 'w', encoding="utf-8") as f:
+    f.write("Index \t distance (Å)\n")
+    for idx, distances in enumerate(distances):
+        f.write(f"{idx + 1}\t{distances}\n")
+
+output_filename = "angles_output.txt"
+with open(output_filename, 'w', encoding="utf-8") as f:
+    f.write("Index \t Angle (degrees)\n")
+    for idx, angle in enumerate(angles):
+        f.write(f"{idx + 1}\t{angle}\n")
+```
