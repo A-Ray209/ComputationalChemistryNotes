@@ -123,16 +123,17 @@ import argparse
 
 # 解析命令行参数
 parser = argparse.ArgumentParser(description='Analyze MD trajectory.')
-parser.add_argument('gro_file', type=str, help='GRO file')
-parser.add_argument('xtc_file', type=str, help='XTC file')
-parser.add_argument('n_molecules', type=int, help='Number of molecules')
-parser.add_argument('rel_atoms_part1', type=str, help='Comma-separated relative atom indices for part 1')
-parser.add_argument('rel_atoms_part2', type=str, help='Comma-separated relative atom indices for part 2')
+parser.add_argument('-g','--gro_file',required=True, type=str, help='GRO file')
+parser.add_argument('-x','--xtc_file', required=True,type=str, help='XTC file')
+parser.add_argument('-n','--n_molecules',required=True, type=int, help='Number of molecules')
+parser.add_argument('-a','--n_atoms',required=True, type=int, help='Number of atoms for one molecules')
+parser.add_argument('-p1','--rel_atoms_part1',required=True, type=str, help='Comma-separated relative atom indices for part 1')
+parser.add_argument('-p2','--rel_atoms_part2',required=True, type=str, help='Comma-separated relative atom indices for part 2')
 args = parser.parse_args()
 
 # 解析相对原子序号字符串为整数列表
 def parse_indices(indices_str):
-    return [int(x) for x in indices_str.split(',')]
+    return [int(x)-1 for x in indices_str.split(',')]
 
 rel_atoms_part1 = parse_indices(args.rel_atoms_part1)
 rel_atoms_part2 = parse_indices(args.rel_atoms_part2)
@@ -148,10 +149,14 @@ xtc_file = args.xtc_file
 # 分子数量
 n_molecules = args.n_molecules
 
+
 # 加载宇宙
 u = mda.Universe(gro_file, xtc_file)
-n_atoms_per_molecule = len(u.atoms) // n_molecules
+n_atoms_per_molecule = args.n_atoms
 
+# for mol_index in range(n_molecules):
+        # part1_atoms = calculate_absolute_indices(rel_atoms_part1, mol_index, n_atoms_per_molecule)
+        # print(part1_atoms)
 # 计算质心
 def calc_centroid(atomgroup):
     return atomgroup.center_of_mass()
@@ -190,8 +195,12 @@ for ts in u.trajectory:
         centroid1 = calc_centroid(part1)
         centroid2 = calc_centroid(part2)
         distance = np.linalg.norm(centroid1 - centroid2)
-        frame_distances.append(distance)
-        
+        if distance < 5:
+            frame_distances.append(distance)
+        else:
+            distance = None
+            frame_distances.append(distance)
+            
         normal1 = calc_plane_normal(part1)
         normal2 = calc_plane_normal(part2)
         angle = calc_angle_between_planes(normal1, normal2)
@@ -219,4 +228,5 @@ with open(output_filename, 'w', encoding="utf-8") as f:
     f.write("Index \t Angle (degrees)\n")
     for idx, angle in enumerate(angles):
         f.write(f"{idx + 1}\t{angle}\n")
+
 ```
