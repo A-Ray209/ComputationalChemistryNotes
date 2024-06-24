@@ -1,0 +1,4 @@
+docker run  --name chatgpt-next-web   -d -p 6013:3000 \
+   -e OPENAI_API_KEY="hk-替换为你的key" \
+   -e CODE= \
+   -e BASE_URL=https://api.openai-hk.com   yidadaa/chatgpt-next-web
