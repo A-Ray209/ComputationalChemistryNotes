@@ -143,6 +143,34 @@ vim spec_Int_TD.dat
 将 Gaussian view 中将状态 1 的 vibration 的表格中 Freq 复制到 origin 中做 x（fcclasses 默认对状态1的振动进行分解），HuangRhys.dat中的数据做 y 作图有：
 ![输入图片说明](img/91e0a33b7bd71ee82a1bd20cad4d7dd.png)
 
+#### 3.3 Fcclasses3 计算 IC 速率常数
+
+使用 基态 和 激发态 tdopt 的 fchk 文件
+```
+gen_fcc_state -i DFBP-CZDB_freq.fchk
+gen_fcc_dipfile -i DFBP-CZDB_tdopt_freq.fchk -nac
+gen_fcc_state -i DFBP-CZDB_tdopt_freq.fchk
+```
+生成 fcc.inp 的模板文件
+```
+$$$
+PROPERTY     =   IC  ; OPA/EMI/ECD/CPL/RR/TPA/TPCD/MCD/IC/NRSC
+MODEL        =   AH   ; AS/ASF/AH/VG/VGF/VH
+TEMP         =   298.0 ; (temperature in K)
+BROADFUN     =   GAU  ; GAU/LOR/VOI
+HWHM         =   0.01 ; (broadening width in eV)
+METHOD       =   TD   ; TI/TD
+;VIBRATIONAL ANALYSIS
+COORDS       =   CARTESIAN ; CARTESIAN/INTERNAL
+;INPUT DATA FILES
+STATE1_FILE  =   DFBP-CZDB_tdopt_freq.fcc     ; 修改
+STATE2_FILE  =   DFBP-CZDB_freq.fcc           ; 修改
+NAC_FILE   =   nac_DFBP-CZDB_tdopt_freq_fchk  ; 修改
+;VERBOSE LEVEL
+VERBOSE      =   1
+```
+在 fcc.out 文件中
+
 
 附： 提交 Fcclasses3 的模板文件
 ```
