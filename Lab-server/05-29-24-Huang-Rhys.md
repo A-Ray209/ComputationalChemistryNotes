@@ -126,7 +126,7 @@ ls *.fcc                               # 查看 fcc 文件
 gen_fcc_dipfile -i DMB_tdopt_freq.fchk # 生成生成偶极子文件
 mv eldip_DMB_tdopt_freq_fchk eldip_DMB # 重命名
 
-fcclasses3 -h                          # 生成计算配置文件 见文末
+fcclasses3 -h > fcclasses.inp          # 生成计算配置文件 见文末
 vim fcclasses.inp                      # 编辑
 fcclasses3 fcclasses.inp               # 提交计算
 
