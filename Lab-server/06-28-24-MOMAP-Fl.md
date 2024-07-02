@@ -137,6 +137,36 @@ do_spec_tvcf_spec = 1                   #1 表示开启计算荧光光谱
   FoSFile      = "spec.tvcf.spec.dat"    #归一化的光谱输出文件
 /
 ```
+版本2
+```
+do_spec_tvcf_ft   = 1                   #1 表示开启计算荧光关联函数
+do_spec_tvcf_spec = 1                   #1 表示开启计算荧光光谱
+
+&spec_tvcf                              #描述计算内容
+  DUSHIN       = True                    #是否考虑 Duschinsky 转动(t 开启，f 关闭)
+  Temp         = 300                     #温度
+  tmax         = 1000                    #积分时间
+  dt           = 1                       #积分步长
+  DSFile        = “evc.cart.dat“   # evc文件
+  Ead           = 0.082678 au        # 绝热激发能
+  dipole_abs    = 0.092465 debye     # 跃迁偶极矩（吸收）
+  dipole_emi    = 0.440702 debye     # 跃迁偶极矩（发射）
+  maxvib        = 10                 # 最大量子数
+  if_cal_ic     = .t.                # 是否计算无辐射通道
+  promode       = 24                 # 指定提升模式（无辐射通道）
+  FC_eps_abs    = 0.1                # FC因子阈值
+  FC_eps_emi    = 0.1 
+  FC_eps_ic     = 0.1 
+  FreqScale     = 1.0                # 频率缩放因子
+  FreqEPS       = 0.01               # distortion阈值
+  Seps          = 0.01               # 黄昆因子阈值
+  FWHM          = 500   cm-1         # 展宽（半高全宽）
+  flog          = “spec.sums.log“  # log文件
+  reduce_eps    = 0.001              # 光谱输出阈值
+/
+```
+
+
 See also
 
 对以上MOMAP输入变量的解释，请参考API Reference 部分.
