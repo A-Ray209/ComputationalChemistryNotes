@@ -39,7 +39,7 @@ following partitioning scheme: Standard Partition
 ![输入图片说明](img/1ab26800-0f98-11ef-9ebc-2f793003aa1f_20240511211222.jpeg)
 ![输入图片说明](img/0f7e8450-0f98-11ef-9ebc-2f793003aa1f_20240511211203.jpeg)
 
-分区调正：/home 删除，/ 删除，/ 添加分配主要容量，Accept Changes
+分区调正：/home 删除，/ 删除，/ 添加分配主要容量，添加/home，Accept Changes
 
 网络：检查 ip 地址
 
