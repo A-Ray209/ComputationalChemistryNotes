@@ -46,7 +46,7 @@ showmount -e 192.168.1.101    # 查看结果
 切换到 node02 临时挂载
 
 ```
-mount -t nfs 192.168.1.101:/home /home     # 将 node01 的 home 挂载到 node02 的 home 目录
+sudo mount -t nfs 192.168.1.101:/home /home     # 将 node01 的 home 挂载到 node02 的 home 目录
 ```
 永久挂载
 
