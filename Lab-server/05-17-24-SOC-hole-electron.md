@@ -77,8 +77,10 @@ File - Preference - Couor - Surface Color
 参考网站 http://sobereva.com/411
 
 需要安装Intel oneAPI环境
+```
 sudo sh ./l_BaseKit_p_2024.1.0.596_offline.sh
 sudo sh ./_p_2024.1.0.560_offline.sh
+```
 #### 3.1 从仓库安装 SOC
 
 ```
