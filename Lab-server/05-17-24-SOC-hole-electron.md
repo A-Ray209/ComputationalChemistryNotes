@@ -136,7 +136,9 @@ git push                                                       # 推送仓库
 
 ### 4. 空穴电子分布
 
-#### 4.1 安装 Multiwfn
+#### 4.1 安装 Multiwfn_noGUI
+
+安装GUI 如果不启用 x server 会偶尔卡掉
 
 安装参考网站 http://sobereva.com/688
 
