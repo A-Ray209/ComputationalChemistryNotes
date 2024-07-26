@@ -10,6 +10,29 @@
 cd /software/cp2k-8.1/tools/toolchain/
 ./install_cp2k_toolchain.sh --with-sirius=no --with-openmpi=install --with-plumed=install
 ```
+
+安装实际命令 成功
+```
+tar -xvf cp2k-2024.1.tar.bz2 cp2k-2024.1/
+cd cp2k-2024.1/
+ls
+mv ~/.bashrc ~/.tmp_bashrc
+touch ~/.bashrc
+exit
+
+tksm11
+cd software/cp2k-2024.1/tools/toolchain/
+ls
+proxychains ./install_cp2k_toolchain.sh --with-sirius=no --with-openmpi=install --with-plumed=install
+cd install/
+ls
+cd ..
+export PATH=/usr/lib64/openmpi/bin:$PATH
+export LD_LIBRARY_PATH=/usr/lib64/openmpi/lib:$LD_LIBRARY_PATH
+proxychains ./install_cp2k_toolchain.sh --with-sirius=no --with-openmpi=system --with-plumed=install
+./install_cp2k_toolchain.sh --with-sirius=no --with-openmpi=system --with-plumed=install
+```
+
 接着上一节，现在把 `/software/cp2k-8.1/tools/toolchain/install/arch/` 下所有文件拷到 `/software/cp2k-8.1/arch` 目录下。这些文件定义了编译不同版本的CP2K所需的参数，其内容是 toolchain 脚本根据装的库和当前环境自动产生的。然后运行以下命令
 ```
 source /software/cp2k-8.1/tools/toolchain/install/setup
