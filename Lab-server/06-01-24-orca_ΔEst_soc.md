@@ -95,6 +95,7 @@ TQAO-TF-SOS-wPBEPP86    -0.024     3.376     3.400
 ```
 dos2unix dftlist                                                                                             # 将换行符转换为 Linux 系统下的换行符
 for m in *.inp; do for i in $(cat ./dftlist); do sed "s/mPW2PLYP/$i/g" $m > ${m/.inp/}-${i}.inp; done;done   # 嵌套循环，先循环文件，再循环替换泛函
+for i in *.inp; do sed "s/mPW2PLYP/SOS-PBE-QIDH/g" $i > ${i/.inp/}_est.inp;done
 ```
 
 #### 3. 使用 orca 的 PBE0 计算 soc
